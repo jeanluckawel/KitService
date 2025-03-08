@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('IdNumber')->unique();
             $table->date('picture');
             $table->date('dateOfBirth');
-            $table->string('gender');
+            $table->enum('gender',['Male','Female']);
 
             $table->string('department');
             $table->string('function');
