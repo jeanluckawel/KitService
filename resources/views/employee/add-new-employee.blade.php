@@ -162,33 +162,34 @@
 
     <div class="bg-white rounded-lg shadow-lg p-8 w-full max-w-3xl">
         <h2 class="text-2xl font-semibold mb-6">Add New Employee</h2>
-        <form id="employeeForm" class="space-y-6">
+        <form method="POST" action="/addnewemployee" id="employeeForm" class="space-y-6">
+            @csrf
             <!-- Step 1: Basic Info -->
             <h3 class="font-semibold mb-4">Step 1: Basic Info</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input type="text" placeholder="Employee Number" class="border-2 p-3 w-full rounded focus:outline-none placeholder-gray-500 border-gray-400" required />
-                <input type="text" placeholder="First Name" class="border-2 p-3 w-full rounded focus:outline-none placeholder-gray-500 border-gray-400" required />
-                <input type="text" placeholder="Second Name" class="border-2 p-3 w-full rounded focus:outline-none placeholder-gray-500 border-gray-400" required />
-                <input type="text" placeholder="Last Name" class="border-2 p-3 w-full rounded focus:outline-none placeholder-gray-500 border-gray-400" required />
+                <input type="text" name="employeeId" placeholder="Employee Number" class="border-2 p-3 w-full rounded focus:outline-none placeholder-gray-500 border-gray-400" required />
+                <input type="text" name="firstName"placeholder="First Name" class="border-2 p-3 w-full rounded focus:outline-none placeholder-gray-500 border-gray-400" required />
+                <input type="text" name="lastName" placeholder="Second Name" class="border-2 p-3 w-full rounded focus:outline-none placeholder-gray-500 border-gray-400" required />
+                <input type="text" name="middleName" placeholder="Last Name" class="border-2 p-3 w-full rounded focus:outline-none placeholder-gray-500 border-gray-400" required />
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input type="text" placeholder="ID Number (Passport)" class="border-2 p-3 w-full rounded focus:outline-none placeholder-gray-500 border-gray-400" required />
+                <input type="text" name="IdNumber" placeholder="ID Number (Passport)" class="border-2 p-3 w-full rounded focus:outline-none placeholder-gray-500 border-gray-400" required />
                 <div>
                     <label class="font-semibold mb-1">Upload Picture</label>
-                    <input type="file" accept="image/*" class="border-2 p-3 rounded focus:outline-none placeholder-gray-500 border-gray-400" required />
+                    <input type="file" name="picture" accept="image/*" class="border-2 p-3 rounded focus:outline-none placeholder-gray-500 border-gray-400" required />
                 </div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input type="text" placeholder="Phone" class="border-2 p-3 w-full rounded focus:outline-none placeholder-gray-500 border-gray-400" required />
+                <input type="text" name="phone" placeholder="Phone" class="border-2 p-3 w-full rounded focus:outline-none placeholder-gray-500 border-gray-400" required />
                 <div class="flex flex-col mb-4">
                     <h4 class="font-semibold mb-1">Gender</h4>
                     <div class="flex space-x-4">
                         <label class="flex items-center">
-                            <input type="radio" name="gender" value="male" class="mr-1" required />
+                            <input type="radio" name="gender" value="M" class="mr-1" required />
                             <span>Male</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="radio" name="gender" value="female" class="mr-1" />
+                            <input type="radio" name="gender" value="F" class="mr-1" />
                             <span>Female</span>
                         </label>
                     </div>
@@ -200,14 +201,14 @@
             <!-- Step 2: Additional Info -->
             <h3 class="font-semibold mb-4">Step 2: Additional Info</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <select class="custom-select" required>
+                <select class="custom-select" name="department" required>
                     <option value="" disabled selected>Department</option>
                     <option value="Transport">Transport</option>
                     <option value="Construction">Construction</option>
                     <option value="ADM">ADM</option>
                     <option value="HR">HR</option>
                 </select>
-                <select class="custom-select" required>
+                <select class="custom-select" name="function" required>
                     <option value="" disabled selected>Function</option>
                     <option value="Chauffeur">Chauffeur</option>
                     <option value="Directeur Technique">Directeur Technique</option>
@@ -219,8 +220,8 @@
                 </select>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input type="number" placeholder="Tax Dependants" class="border-2 p-3 w-full rounded focus:outline-none placeholder-gray-500 border-gray-400" required />
-                <input type="text" placeholder="Phone Number" class="border-2 p-3 w-full rounded focus:outline-none placeholder-gray-500 border-gray-400" required />
+                <input type="number" name="dependant" placeholder="Tax Dependants" class="border-2 p-3 w-full rounded focus:outline-none placeholder-gray-500 border-gray-400" required />
+                <input type="date" name="dateOfBirth" placeholder="Tax Dependants" class="border-2 p-3 w-full rounded focus:outline-none placeholder-gray-500 border-gray-400" required />
             </div>
 
             <hr class="my-6">
@@ -230,20 +231,20 @@
             <div class="flex flex-col mb-4">
                 <h4 class="font-semibold mb-1">Emergency Contact (In case of emergency)</h4>
                 <div class="flex flex-col md:flex-row md:space-x-4 mb-4">
-                    <select class="custom-select w-1/3" required>
+                    <select class="custom-select w-1/3" name="title" required>
                         <option value="" disabled selected>Title</option>
                         <option value="Mr.">Mr.</option>
                         <option value="Ms.">Ms.</option>
                         <option value="Mrs.">Mrs.</option>
                         <option value="Dr.">Dr.</option>
                     </select>
-                    <input type="text" placeholder="Relationship" class="border-2 p-3 w-full rounded focus:outline-none placeholder-gray-500 border-gray-400" required />
+                    <input type="text" name="relationship" placeholder="Relationship" class="border-2 p-3 w-full rounded focus:outline-none placeholder-gray-500 border-gray-400" required />
                 </div>
                 <div class="flex flex-col md:flex-row md:space-x-4 mb-4">
-                    <input type="text" placeholder="Name" class="border-2 p-3 w-full rounded focus:outline-none placeholder-gray-500 border-gray-400" required />
-                    <input type="text" placeholder="Address" class="border-2 p-3 w-full rounded focus:outline-none placeholder-gray-500 border-gray-400" required />
+                    <input type="text" name="name" placeholder="Name" class="border-2 p-3 w-full rounded focus:outline-none placeholder-gray-500 border-gray-400" required />
+                    <input type="text" name="adress"placeholder="Address" class="border-2 p-3 w-full rounded focus:outline-none placeholder-gray-500 border-gray-400" required />
                 </div>
-                <input type="text" placeholder="Phone" class="border-2 p-3 w-full rounded focus:outline-none placeholder-gray-500 border-gray-400" required />
+                <input type="text" name="phoneEmercency" placeholder="Phone" class="border-2 p-3 w-full rounded focus:outline-none placeholder-gray-500 border-gray-400" required />
             </div>
             <textarea placeholder="Address" class="border-2 p-3 w-full rounded focus:outline-none placeholder-gray-500 border-gray-400" required></textarea>
 

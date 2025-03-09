@@ -17,14 +17,13 @@ return new class extends Migration
             $table->string('firstName');
             $table->string('lastName');
             $table->string('middleName');
-            $table->string('IdNumber')->unique();
-            $table->date('picture');
+            $table->string('IdNumber');
+            $table->string('picture');
             $table->date('dateOfBirth');
-            $table->enum('gender',['Male','Female']);
-
+            $table->string('gender')->check("gender IN ('M', 'F', 'male', 'female')");
             $table->string('department');
             $table->string('function');
-            $table->string('dependant');
+            $table->integer('dependant');
             $table->string('phone');
 
             $table->string('title');
