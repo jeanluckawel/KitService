@@ -27,6 +27,7 @@
                     <th>Téléphone</th>
                     <th>Adresse</th>
                     <th>Date de Naissance</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -41,6 +42,21 @@
                         <td>{{ $employee->phone }}</td>
                         <td>{{ $employee->adress }}</td>
                         <td>{{ $employee->dateOfBirth }}</td>
+                        <td>
+
+                            <!-- Bouton Modifier -->
+                            <a href="#" class="btn btn-primary btn-sm">Modifier</a>
+
+                            <!-- Formulaire Supprimer -->
+                            <form action="{{ route('addnewemployee.destroy', $employee->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Voulez-vous vraiment désactiver cet employé ?')">
+                                    Supprimer
+                                </button>
+                            </form>
+
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

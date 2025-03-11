@@ -13,7 +13,9 @@ class AddNewEmployeeController extends Controller
     // Afficher la liste des employés
     public function index()
     {
-        $employees = AddNewEmployee::all();
+        // Sélectionner uniquement les employés actifs (status = 1)
+        $employees = AddNewEmployee::where('status', 1)->get();
+
         return view('employee.liste-employee', compact('employees'));
     }
 
@@ -84,8 +86,16 @@ class AddNewEmployeeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(AddNewEmployee $addNewEmployee)
+    public function destroy($id)
     {
-        //
+        // Trouver l'employé
+        $employee = AddNewEmployee::findOrFail($id);
+
+        // Mettre son statut à 0 (désactivé)
+        $employee->status = 0;
+        $employee->save();
+
+        // Redirection avec un message de succès
+        return redirect()->route('addnewemployee.index')->with('success', 'Employé supprimé avec succès !');
     }
 }

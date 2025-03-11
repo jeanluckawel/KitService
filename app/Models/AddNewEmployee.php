@@ -25,6 +25,7 @@ class AddNewEmployee extends Model
         'name',
         'adress',
         'phoneEmercency',
+        'status',
     ];
 
 }

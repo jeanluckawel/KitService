@@ -31,6 +31,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('adress');
             $table->string('phoneEmercency');
+            $table->boolean('status')->default(1); // 1 = actif, 0 = supprimé
 
             $table->timestamps();
         });

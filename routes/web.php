@@ -14,6 +14,7 @@ Route::resource('addnewemployee', AddNewEmployeeController::class)->names([
     'edit' => 'addnewemployee.edit',
     'update' => 'addnewemployee.update'
 ]);
+Route::delete('/addnewemployee/{id}', [AddNewEmployeeController::class, 'destroy'])->name('addnewemployee.destroy');
 
 // Route::view('add-new-employee', 'employee.add-new-employee');
 
